@@ -14,3 +14,8 @@ Testing:
 python test_cv.py
 # Acknowledgments
 This code is inspired by MISA and Pathomic Fusion.
+
+# Training:
+```bash
+python train_cv.py --results /opt/CAMR/results --model_save /opt/CAMR/models --gpu_ids 0 --dataroot /opt/CAMR/
+```

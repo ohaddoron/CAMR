@@ -7,7 +7,7 @@ from tqdm import tqdm
 from torch.autograd import Variable
 import numpy as np
 import torch
-from torchsummary import summary
+# from torchsummary import summary
 import torch.backends.cudnn as cudnn
 import torch.nn as nn
 from networks import define_scheduler, define_optimizer,MisaLMFGatedRec
@@ -36,7 +36,7 @@ def train(opt,data,device,k):
     print(model)
     print("Number of Trainable Parameters: %d" % count_parameters(model))
     custom_data_loader = graph_fusion_DatasetLoader(data, split='train')
-    train_loader = DataLoader(dataset = custom_data_loader, batch_size = len(custom_data_loader), num_workers = 4, shuffle = False)
+    train_loader = DataLoader(dataset = custom_data_loader, batch_size = len(custom_data_loader), num_workers = os.cpu_count(), shuffle = False)
     metric_logger = {'train':{'loss':[], 'pvalue':[], 'cindex':[], 'surv_acc':[]},
                       'test':{'loss':[], 'pvalue':[], 'cindex':[], 'surv_acc':[]}}
     c_index_best = 0

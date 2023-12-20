@@ -12,7 +12,7 @@ import pandas as pd
 from data_loaders import *
 from options import parse_args
 from train_test import train, test
-
+from pathlib import Path
 
 
 opt = parse_args()
@@ -23,6 +23,7 @@ if not os.path.exists(os.path.join(opt.model_save, opt.exp_name, opt.model_name)
         os.makedirs(os.path.join(opt.model_save, opt.exp_name, opt.model_name))
 
 data_cv_path = '%s%s' % (opt.dataroot,opt.datatype)
+assert os.path.exists(data_cv_path), "Error: %s does not exist" % data_cv_path
 print("Loading %s" % data_cv_path)
 data_cv = pickle.load(open(data_cv_path, 'rb'))
 data_cv_splits = data_cv['cv_splits']
